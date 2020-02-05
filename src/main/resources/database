@@ -1,0 +1,17 @@
+#!/usr/bin/expect
+
+set timeout 20
+
+spawn ij
+expect "ij>"
+
+send "connect 'jdbc:derby://localhost:1527/WM;create=true;' user 'WM';\n"
+expect "ij>"
+
+send "run 'initDB.sql';\n"
+expect "ij> /* -
+ * Projekt końcowy realizowany w ramach studiów podyplomowych Nowoczesne aplikacje biznesowe Java EE edycja 8
+ */
+"
+
+send "exit;\n"
