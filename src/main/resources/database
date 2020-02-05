@@ -2,7 +2,7 @@
 
 set timeout 20
 
-spawn ij
+spawn /opt/payara5/javadb/bin/ij
 expect "ij>"
 
 send "connect 'jdbc:derby://localhost:1527/WM;create=true;' user 'WM';\n"
