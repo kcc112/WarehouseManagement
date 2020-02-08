@@ -39,6 +39,7 @@
 .navbar-default .navbar-nav {
     font-size: large;
     font-style: normal;
+    background: yellow;
 }
 
 .navbar-default .navbar-nav > li > .dropdown-menu {
