@@ -21,6 +21,7 @@
     border: 1px solid black;;
     text-align: center;
     padding: 10px;
+    background-color: purple;
 }
 
 .figure{
@@ -32,7 +33,7 @@
 }
 
 .navbar-default {
-    color: purple;
+    color: white;
 }
 
 .navbar-default .navbar-nav {
