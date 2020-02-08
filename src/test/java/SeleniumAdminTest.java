@@ -1,6 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 
@@ -11,8 +11,8 @@ public class SeleniumAdminTest {
 
     @Test
     public void ChangeUserRole() {
-        System.setProperty("webdriver.gecko.driver", System.getenv("WEBDRIVER"));
-        WebDriver webDriver = new FirefoxDriver();
+        System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
+        WebDriver webDriver = new ChromeDriver();
         webDriver.navigate().to(System.getenv("WM") + "/faces/common/signIn.xhtml");
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[1]/td[2]/input")).sendKeys(System.getenv("LOGINA"));
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[2]/td[2]/input")).sendKeys(System.getenv("PASSWORDA"));
