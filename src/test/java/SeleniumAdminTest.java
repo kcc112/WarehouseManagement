@@ -1,7 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
 
 
@@ -13,9 +13,10 @@ public class SeleniumAdminTest {
     @Test
     public void ChangeUserRole() {
         System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
-        DesiredCapabilities handlSSLErr = DesiredCapabilities.chrome();
-        handlSSLErr.setAcceptInsecureCerts(true);
-        WebDriver webDriver = new ChromeDriver(handlSSLErr);
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("useAutomationExtension", false);
+        options.setAcceptInsecureCerts(true);
+        WebDriver webDriver = new ChromeDriver(options);
         webDriver.navigate().to(System.getenv("WM") + "/faces/common/signIn.xhtml");
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[1]/td[2]/input")).sendKeys(System.getenv("LOGINA"));
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[2]/td[2]/input")).sendKeys(System.getenv("PASSWORDA"));
