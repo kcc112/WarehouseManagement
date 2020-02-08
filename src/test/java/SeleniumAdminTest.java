@@ -12,6 +12,7 @@ public class SeleniumAdminTest {
 
     @Test
     public void ChangeUserRole() {
+        System.out.println(System.getenv("WEBDRIVER"));
         System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("useAutomationExtension", false);
