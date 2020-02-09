@@ -41,7 +41,7 @@ public class SeleniumAdminTest {
 
     @Test
     public void increaseStockWarehouse() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
+//        System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
         ChromeOptions options = new ChromeOptions();
 //        options.setExperimentalOption("useAutomationExtension", false);
         options.setAcceptInsecureCerts(true);
@@ -50,7 +50,7 @@ public class SeleniumAdminTest {
 //        dc.setBrowserName("chrome");
 //        dc.setPlatform(Platform.WINDOWS);
 
-        RemoteWebDriver webDriver = new RemoteWebDriver(new URL("http://localhost:5555/wd/hub"), options);
+        RemoteWebDriver webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
         webDriver.navigate().to(System.getenv("WM") + "/faces/common/signIn.xhtml");
         //logowanie
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[1]/td[2" + "]/input")).sendKeys("JDoe");
