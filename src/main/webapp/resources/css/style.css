@@ -15,6 +15,7 @@
     padding: 10px;
     box-sizing: border-box;
     float: left;
+    background-color: red;
 }
 
 .footer{
@@ -39,6 +40,7 @@
 .navbar-default .navbar-nav {
     font-size: large;
     font-style: normal;
+    background: yellow;
 }
 
 .navbar-default .navbar-nav > li > .dropdown-menu {
