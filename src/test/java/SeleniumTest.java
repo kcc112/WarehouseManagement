@@ -101,4 +101,43 @@ public class SeleniumTest {
 
 
     }
+
+    @Test
+    public void RegisterAccountTest() throws MalformedURLException {
+        System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
+        ChromeOptions options = new ChromeOptions();
+        options.setAcceptInsecureCerts(true);
+        RemoteWebDriver webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+        webDriver.navigate().to(System.getenv("WM") + "/faces/common/signIn.xhtml");
+
+        //logowanie
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[1]/td[2]/input")).sendKeys(System.getenv("LOGINW"));
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[2]/td[2]/input")).sendKeys(System.getenv("PASSWORDA"));
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/p/input")).click();
+
+        // dodanie uzytkownika
+        webDriver.navigate().to( System.getenv("WM") + "/faces/common/registerAccount.xhtml");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td[2]/input")).sendKeys("Ernest");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[2]/td[2]/input")).sendKeys("Blaz");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[3]/td[2]/input")).sendKeys("ernestblaz@gmail.com");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[4]/td[2]/input")).sendKeys("EBlaz");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[5]/td[2]/input")).sendKeys("!QAZ2wsx");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[6]/td[2]/input")).sendKeys("!QAZ2wsx");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[7]/td[2]/input")).sendKeys("Ile masz lat?");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[8]/td[2]/input")).sendKeys("23");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/input[2]")).click();
+
+
+        // sprawdzenie
+        webDriver.navigate().to( System.getenv("WM") + "/faces/account/listNewAccounts.xhtml");
+        boolean findUser = webDriver.findElement(By.xpath("//*[text()='ernestblaz@gmail.com']")).isDisplayed();
+        assertEquals(true, findUser);
+
+        // usuniecie uzytkownika
+        webDriver.findElement(By.xpath("//*[text()='ernestblaz@gmail.com']/../td[5]/input[2]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/input[2]")).click();
+
+        webDriver.quit();
+    }
+
 }
