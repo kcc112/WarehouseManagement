@@ -12,9 +12,7 @@ public class SeleniumAdminTest {
     @Test
 
     public void ChangeUserRole() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
         ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("useAutomationExtension", false);
         options.setAcceptInsecureCerts(true);
         RemoteWebDriver webDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
         webDriver.navigate().to(System.getenv("WM") + "/faces/common/signIn.xhtml");
