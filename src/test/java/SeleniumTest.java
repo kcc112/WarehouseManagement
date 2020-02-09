@@ -39,9 +39,9 @@ public class SeleniumTest {
 
         //logowanie
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[1]/td[2" +
-                "]/input")).sendKeys("LOGINW");
+                "]/input")).sendKeys(System.getenv("LOGINW"));
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[2]/td[2" +
-                "]/input")).sendKeys("PASSWORDA");
+                "]/input")).sendKeys(System.getenv("PASSWORDA"));
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/p/input")).click();
 
         //zwiekszenie stanu
