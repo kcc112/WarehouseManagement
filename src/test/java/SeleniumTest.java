@@ -10,7 +10,6 @@ import static org.testng.Assert.assertNull;
 public class SeleniumTest {
 
     @Test
-
     public void changeUserRole() throws MalformedURLException {
         ChromeOptions options = new ChromeOptions();
         options.setAcceptInsecureCerts(true);
