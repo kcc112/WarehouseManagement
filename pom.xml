@@ -59,7 +59,7 @@
                 <version>3.0.0-M4</version>
                 <configuration>
                     <includes>
-                        <include>SeleniumAdminTest.java</include>
+                        <include>SeleniumTest.java</include>
                     </includes>
 <!--                    <suiteXmlFiles>-->
 <!--                        <suiteXmlFile>testng.xml</suiteXmlFile>-->
