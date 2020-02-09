@@ -12,7 +12,6 @@ public class SeleniumAdminTest {
 
     @Test
     public void ChangeUserRole() {
-        System.out.println(System.getenv("WEBDRIVER"));
         System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("useAutomationExtension", false);
@@ -32,5 +31,44 @@ public class SeleniumAdminTest {
         value = webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[1]/td[5]/input[5]")).getAttribute("disabled");
         assertNull(value);
         webDriver.quit();
+    }
+
+    @Test
+    public void increaseStockWarehouse() {
+        System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("useAutomationExtension", false);
+        options.setAcceptInsecureCerts(true);
+        WebDriver webDriver = new ChromeDriver(options);
+        webDriver.navigate().to(System.getenv("WM") + "/faces/common/signIn.xhtml");
+        //logowanie
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[1]/td[2" +
+                "]/input")).sendKeys("JDoe");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[2]/td[2" +
+                "]/input")).sendKeys("P@ssw0rd");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/p/input")).click();
+
+        //dodanie produktu
+        webDriver.navigate().to(System.getenv("WM") + "/faces/stock/stockUp.xhtml");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[1]/td[2]/select/option[2]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[2]/td[2]/select/option[9]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[3]/td[2]/input")).sendKeys("5");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[4]/td[2]/select/option[8]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/input[2]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/input[2]")).click();
+
+        //sprawdzenie stanu
+        webDriver.navigate().to(System.getenv("WM") + "/faces/stock/listStock.xhtml");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table[1]/tbody/tr/td[2]/select/option[9]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table[1]/tbody/tr/td[3]/input")).click();
+        String res =
+                webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table[2]/tbody/tr/td[2]")).getText();
+        assertEquals("5", res);
+
+        //usuniecie produktu
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table[2]/tbody/tr/td[6]/input[1]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[3]/td[2]/input")).sendKeys("5");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/input[2]")).click();
+
     }
 }
