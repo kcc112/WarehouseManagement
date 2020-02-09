@@ -4,8 +4,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
+
+import static org.testng.Assert.*;
 
 public class SeleniumTest {
 
@@ -111,7 +111,7 @@ public class SeleniumTest {
         webDriver.navigate().to(System.getenv("WM") + "/faces/common/signIn.xhtml");
 
         //logowanie
-        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[1]/td[2]/input")).sendKeys(System.getenv("LOGINW"));
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[1]/td[2]/input")).sendKeys(System.getenv("LOGINA"));
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[2]/td[2]/input")).sendKeys(System.getenv("PASSWORDA"));
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/p/input")).click();
 
@@ -131,7 +131,7 @@ public class SeleniumTest {
         // sprawdzenie
         webDriver.navigate().to( System.getenv("WM") + "/faces/account/listNewAccounts.xhtml");
         boolean findUser = webDriver.findElement(By.xpath("//*[text()='ernestblaz@gmail.com']")).isDisplayed();
-        assertEquals(true, findUser);
+        assertTrue(findUser);
 
         // usuniecie uzytkownika
         webDriver.findElement(By.xpath("//*[text()='ernestblaz@gmail.com']/../td[5]/input[2]")).click();
