@@ -1,5 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
@@ -10,9 +12,12 @@ import static org.testng.Assert.assertNull;
 public class SeleniumAdminTest {
 
     @Test
-    public void ChangeUserRole() {
-        System.setProperty("webdriver.gecko.driver", System.getenv("WEBDRIVER"));
-        WebDriver webDriver = new FirefoxDriver();
+    public void DeactivateUserTest() {
+        System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.setAcceptInsecureCerts(true);
+        WebDriver webDriver = new ChromeDriver(options);
         webDriver.navigate().to(System.getenv("WM") + "/faces/common/signIn.xhtml");
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[1]/td[2]/input")).sendKeys(System.getenv("LOGINA"));
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[2]/td[2]/input")).sendKeys(System.getenv("PASSWORDA"));
