@@ -86,6 +86,7 @@ public class SeleniumAdminTest {
         webDriver.navigate().to(System.getenv("WM") + "/faces/product/listProducts.xhtml");
         String startWeight = webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[1]/td[3]")).getText();
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[1]/td[6]/input[1]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[4]/td[2]/input")).clear_field();
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[4]/td[2]/input")).sendKeys("150");
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/input[2]")).click();
         //sprawdzenie wagi
@@ -93,6 +94,7 @@ public class SeleniumAdminTest {
         assertEquals("150", weight);
         //powrot do startowej wagi
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[1]/td[6]/input[1]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[4]/td[2]/input")).clear_field();
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[4]/td[2]/input")).sendKeys(startWeight);
         webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/input[2]")).click();
 
