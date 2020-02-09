@@ -69,4 +69,35 @@ public class SeleniumAdminTest {
         webDriver.quit();
 
     }
+
+    @Test
+    public void changeProductWeight() throws MalformedURLException {
+        System.setProperty("webdriver.chrome.driver", System.getenv("WEBDRIVER"));
+        ChromeOptions options = new ChromeOptions();
+        options.setAcceptInsecureCerts(true);
+
+        RemoteWebDriver webDriver = new RemoteWebDriver(new URL("http://localhost:5555/wd/hub"), options);
+        webDriver.navigate().to(System.getenv("WM") + "/faces/common/signIn.xhtml");
+        //logowanie
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[1]/td[2" + "]/input")).sendKeys(System.getenv("LOGINP"));
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr/td/table/tbody/tr[2]/td[2" + "]/input")).sendKeys(System.getenv("PASSWORDA"));
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/p/input")).click();
+        //zmiana wagi
+        webDriver.navigate().to(System.getenv("WM") + "/faces/product/listProducts.xhtml");
+        String startWeight = webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[1]/td[3]")).getText();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[1]/td[6]/input[1]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[4]/td[2]/input")).sendKeys("150");
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/input[2]")).click();
+        //sprawdzenie wagi
+        String weight = webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[1]/td[3]")).getText();
+        assertEquals("150", weight);
+        //powrot do startowej wagi
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[1]/td[6]/input[1]")).click();
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/table/tbody/tr[4]/td[2]/input")).sendKeys(startWeight);
+        webDriver.findElement(By.xpath("/html/body/div/div[3]/div/form/input[2]")).click();
+
+        webDriver.quit();
+
+
+    }
 }
